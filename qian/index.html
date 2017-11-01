@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			width: 100px;
+			float: left;
+			border-top: 1px solid #ccc;
+			margin: 20px;
+		}
+		li{
+			width: 100%;
+			height: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			text-align: center;
+			list-style: none;
+			border: 1px solid #ccc;
+			border-top: none;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" class="inp" placeholder="请输入26个英语字母">
+	<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">搜索</button>
+	<div>
+		<ul class="ul1">
+			<li>id</li>
+		</ul>
+		<ul class="ul2">
+			<li>xw</li>
+		</ul>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	$(function(){
+		$('.btn').click(function(){
+			$.ajax({
+				url:'http://localhost:3000/item/list',
+				type:'POST',
+				data:{
+					'inp':$('.inp').val()
+				},
+				success:function(e){
+					for (i in e) {
+						$('.ul1').append('<li>'+e[i].id+'</li>');
+						$('.ul2').append('<li>'+e[i].xw+'</li>');
+					}
+				}
+			})
+		})
+	})
+</script>
+</html>
